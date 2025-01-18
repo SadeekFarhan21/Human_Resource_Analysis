@@ -91,3 +91,9 @@ st.plotly_chart(fig)
 st.subheader('Satisfaction Level by Left')
 fig = px.box(df, x='left', y='satisfaction_level', color='left')
 st.plotly_chart(fig)
+
+left_by_department = df[df['left'] == 1].groupby('department').size().reset_index(name='left').sort_values(by=  'left', ascending=False)
+# Number of Employees that Left by Department
+st.subheader('Number of Employees that Left by Department')
+fig = px.bar(left_by_department, x='department', y='left', title='Number of Employees that Left by Department')
+st.plotly_chart(fig)
